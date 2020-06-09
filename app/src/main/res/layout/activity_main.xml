@@ -32,14 +32,6 @@
             android:orientation="vertical">
 
             <LinearLayout
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nhập số tiền"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editTextCurrency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -170,30 +162,3 @@
             android:textColor="#ffffff" />
     </LinearLayout>
 </ScrollView>
-
-    <TextView
-        android:id="@+id/textViewConvert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10px"
-        android:text="1 USD ~ 23,456 VNĐ"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/buttonConvert"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/buttonbackground"
-        android:ems="11"
-        android:text="Chuyển đổi"
-        android:textColor="#ffffff" />
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50px"
-        android:layout_marginBottom="70px" />
-</LinearLayout>
