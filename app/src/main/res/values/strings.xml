@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">App Doi Tien Te</string>
+    <string-array name="array">
+        <item>VND</item>
+        <item>USD</item>
+        <item>WON</item>
+    </string-array>
+</resources>
