@@ -1,21 +1,22 @@
-package com.example.appdoitiente;
+package com.example.appdoitiente.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdoitiente.API.ConvertCurrencyAPI;
 import com.example.appdoitiente.API.CurrencyListener;
+import com.example.appdoitiente.Entity.Currency;
+import com.example.appdoitiente.R;
+import com.example.appdoitiente.Entity.SingleTon;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;

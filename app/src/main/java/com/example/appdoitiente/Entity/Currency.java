@@ -1,4 +1,4 @@
-package com.example.appdoitiente;
+package com.example.appdoitiente.Entity;
 
 public class Currency {
     private String nameCountry;

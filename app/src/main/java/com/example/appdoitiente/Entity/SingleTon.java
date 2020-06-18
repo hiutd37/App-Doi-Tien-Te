@@ -1,4 +1,4 @@
-package com.example.appdoitiente;
+package com.example.appdoitiente.Entity;
 
 import java.util.ArrayList;
 

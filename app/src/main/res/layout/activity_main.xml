@@ -11,7 +11,7 @@
         android:layout_marginLeft="100px"
         android:layout_marginRight="100px"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".View.MainActivity">
 
         <TextView
             android:layout_width="match_parent"
@@ -139,7 +139,9 @@
                     android:background="@drawable/edittextbackground"
                     android:ems="8"
                     android:inputType="numberDecimal"
-                    android:textSize="7pt" />
+                    android:textSize="7pt"
+                    android:editable="false"
+                    />
 
             </LinearLayout>
 

@@ -3,11 +3,10 @@ package com.example.appdoitiente.API;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.example.appdoitiente.Currency;
-import com.example.appdoitiente.MainActivity;
-import com.example.appdoitiente.SingleTon;
+import com.example.appdoitiente.Entity.Currency;
+import com.example.appdoitiente.View.MainActivity;
+import com.example.appdoitiente.Entity.SingleTon;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

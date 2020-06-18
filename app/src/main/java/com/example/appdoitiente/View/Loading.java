@@ -1,10 +1,11 @@
-package com.example.appdoitiente;
+package com.example.appdoitiente.View;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appdoitiente.API.CurrencyAPI;
+import com.example.appdoitiente.R;
 
 public class Loading extends AppCompatActivity {
     @Override
