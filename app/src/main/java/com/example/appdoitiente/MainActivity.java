@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements CurrencyListener {
-
     Spinner spinner1;
     Spinner spinner2;
     ArrayAdapter adapter;
