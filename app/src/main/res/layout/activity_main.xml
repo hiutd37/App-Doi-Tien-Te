@@ -140,7 +140,7 @@
                     android:ems="8"
                     android:inputType="numberDecimal"
                     android:textSize="7pt"
-                    android:enable="false"
+                    android:enabled="false"
                     />
 
             </LinearLayout>
