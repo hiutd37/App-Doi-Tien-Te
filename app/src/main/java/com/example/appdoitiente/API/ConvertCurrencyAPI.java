@@ -1,5 +1,7 @@
 package com.example.appdoitiente.API;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.AdapterView;
 
@@ -17,13 +19,23 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class ConvertCurrencyAPI extends CurrencyAPI {
     CurrencyListener listener;
-    public ConvertCurrencyAPI(CurrencyListener listener) {
+    Activity context;
+    ProgressDialog dialog;
+    public ConvertCurrencyAPI(CurrencyListener listener,Activity context) {
         super();
+        this.context=context;
         this.listener=listener;
     }
 
     @Override
+    protected void onPreExecute() {
+        callDiaLogLoading();
+        super.onPreExecute();
+    }
+
+    @Override
     protected void onPostExecute(String data){
+
         if(data==null) data="";
         try {
             Document document = (Document) DocumentBuilderFactory.newInstance().newDocumentBuilder()
@@ -36,6 +48,8 @@ public class ConvertCurrencyAPI extends CurrencyAPI {
             String currencyConvert[] = stringConvert[0].split("=");
             listener.setTyGia(tyGiaProcess(currencyConvert[1]));
 
+            dialog.dismiss();
+
             Log.i("ádasdasd",stringConvert[0]);
             Log.i("ádasdasd",currencyConvert[1]);
         } catch (IOException e) {
@@ -45,6 +59,19 @@ public class ConvertCurrencyAPI extends CurrencyAPI {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    private void callDiaLogLoading() {
+        dialog=new ProgressDialog(context);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Loading");
+        dialog.setMessage("Loading. Please wait...");
+        dialog.setIndeterminate(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
     }
 
     private Double tyGiaProcess(String s) {
@@ -54,4 +81,5 @@ public class ConvertCurrencyAPI extends CurrencyAPI {
         }
         return Double.parseDouble(tyGia);
     }
+
 }

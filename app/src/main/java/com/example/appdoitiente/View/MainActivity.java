@@ -3,6 +3,8 @@ package com.example.appdoitiente.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,7 +24,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity implements CurrencyListener {
+public class MainActivity extends AppCompatActivity implements CurrencyListener{
     Spinner spinner1;
     Spinner spinner2;
     ArrayAdapter adapter;
@@ -57,7 +59,11 @@ public class MainActivity extends AppCompatActivity implements CurrencyListener 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 from = arryList.currencies.get(position);
-                new ConvertCurrencyAPI(MainActivity.this).execute(url(from,to));
+                if(url(from,to)!=null){
+                    new ConvertCurrencyAPI(MainActivity.this,MainActivity.this).execute(url(from,to));
+                }
+                editTextCurrencyOutput.setText("");
+
             }
 
             @Override
@@ -65,11 +71,14 @@ public class MainActivity extends AppCompatActivity implements CurrencyListener 
 
             }
         });
+
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 to = arryList.currencies.get(position);
-                new ConvertCurrencyAPI(MainActivity.this).execute(url(from,to));
+                if(url(from,to)!=null){
+                new ConvertCurrencyAPI(MainActivity.this,MainActivity.this).execute(url(from,to));}
+                editTextCurrencyOutput.setText("");
             }
 
             @Override
@@ -81,21 +90,42 @@ public class MainActivity extends AppCompatActivity implements CurrencyListener 
         buttonConvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input=editTextCurrencyInput.getText().toString();
-                if(!Pattern.matches("^\\d+$",input)){
-                    Toast.makeText(MainActivity.this,"Bạn cần nhập mệnh giá cần chuyển đổi!",Toast.LENGTH_LONG).show();
-                    editTextCurrencyInput.requestFocus();
-                }
-                else {
-                    String url=url(from,to);
-                    if(url==null){
-                        Toast.makeText(MainActivity.this,"2 mệnh giá cần chuyển đổi phải khác nhau!",Toast.LENGTH_LONG).show();
-                    }else {
-                        setTextOutPut(input);
-                    }
-                }
+                setOutPut();
             }
         });
+
+        editTextCurrencyInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                editTextCurrencyOutput.setText("");
+            }
+        });
+    }
+
+    private void setOutPut() {
+        String input=editTextCurrencyInput.getText().toString();
+        if(!Pattern.matches("^\\d+$",input)){
+            Toast.makeText(MainActivity.this,"Bạn cần nhập mệnh giá cần chuyển đổi!",Toast.LENGTH_LONG).show();
+            editTextCurrencyInput.requestFocus();
+        }
+        else {
+            String url=url(from,to);
+            if(url==null){
+                Toast.makeText(MainActivity.this,"2 mệnh giá cần chuyển đổi phải khác nhau!",Toast.LENGTH_LONG).show();
+            }else {
+                setTextOutPut(input);
+            }
+        }
     }
 
     private void setTextOutPut(String input) {
@@ -129,8 +159,10 @@ public class MainActivity extends AppCompatActivity implements CurrencyListener 
     public void setTyGia(Double tyGia) {
         textViewConvert.setText(textViewConvert(from,to,tyGia));
         this.tyGia=tyGia;
+        //setTextOutPut(editTextCurrencyInput.getText().toString());
     }
     private String formatCurrency(Double s){
         return NumberFormat.getInstance().format(s);
     }
+
 }
